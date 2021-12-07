@@ -1,0 +1,27 @@
+.header {
+    height: 3rem;
+    background-color: #001529;
+}
+
+.header-logo {
+    color: white;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+.user {
+    color: white;
+}
+
+.footer {
+    height: 3rem;
+    background-color: #001529;
+}
+
+.footer-text {
+    color: white;
+}
+
+.content {
+    height: calc(100vh - 6rem);
+}
