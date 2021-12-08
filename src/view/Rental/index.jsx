@@ -50,7 +50,8 @@ export default class Rental extends Component {
     search_condition: 'm_name',
     search_val: '',
     selected_member: '',
-    selected_toy: ''
+    selected_toy: '',
+    user: JSON.parse(sessionStorage.getItem('user'))
   }
 
 
@@ -109,7 +110,7 @@ export default class Rental extends Component {
     })
   }
   add () {
-    let { selected_member, selected_toy } = this.state
+    let { selected_member, selected_toy,user } = this.state
     if (selected_member == '' || selected_toy == '') {
       message.warning('请选择响应数据！')
       return
@@ -117,7 +118,7 @@ export default class Rental extends Component {
     let data = new URLSearchParams()
     data.append('m_id', selected_member)
     data.append('t_id', selected_toy)
-    data.append('s_rent_id', 1)
+    data.append('s_rent_id', user.s_id)
     data.append('r_rent_date', getDate())
     RentalApi.add(data).then(res => {
       let data = res.data
@@ -240,7 +241,7 @@ export default class Rental extends Component {
   returnRent (r_id) {
     let data = new URLSearchParams()
     data.append('r_id', r_id)
-    data.append('s_id', 1)
+    data.append('s_id', this.state.user.s_id)
     data.append('date', getDate())
     RentalApi.return(data).then(res => {
       let data = res.data

@@ -3,7 +3,7 @@
  * @Author: yivi
  * @Date: 2021-12-07 14:46:24
  * @LastEditors: yivi
- * @LastEditTime: 2021-12-07 21:03:15
+ * @LastEditTime: 2021-12-08 16:44:34
  */
 import axios from "axios"
 
@@ -35,6 +35,20 @@ export const ToyApi = {
     },
     getAllFree() {
         return Request.get('/toy/free');
+    }
+}
+export const BossApi = {
+    getAll() {
+        return Request.get('/assistant/all')
+    },
+    del(data) {
+        return Request.post('/assistant/del',data);
+    },
+    add(data) {
+        return Request.post('/assistant/add',data);
+    },
+    search(data) {
+        return Request.post('/assistant/search',data);
     }
 }
 
@@ -75,5 +89,15 @@ export const RentalApi = {
     },
     return(data) {
         return Request.post('/rental/return',data)
+    }
+}
+
+
+export const UserAPi = {
+    login(data) {
+        return Request.post('/user/login',data)
+    },
+    changePwd(data) {
+        return Request.post('/user/changePwd',data)
     }
 }

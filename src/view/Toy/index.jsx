@@ -34,7 +34,7 @@ export default class Toy extends Component {
     t_price: 0,
     t_attach_num: 0,
     t_state: 10,
-    t_out: 0,
+    t_out: '否',
     search_condition: 't_name',
     search_val: ""
   }
@@ -133,8 +133,8 @@ export default class Toy extends Component {
       t_price: 0,
       t_attach_num: 0,
       t_state: 10,
-      t_out: 0
-    })
+      t_out: '否'
+     })
   }
   closeAdd () {
     this.setState({
