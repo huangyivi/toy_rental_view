@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, {  useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import './index.css'
 import { Row, Col, Menu, Button, Modal, Input, message } from 'antd'
@@ -39,7 +39,7 @@ export default function Home () {
     }
   }
   const changePwd = function () {
-    if (old_pwd == '' || new_pwd == '') {
+    if (old_pwd === '' || new_pwd === '') {
       message.warning('请输入相关信息')
       return
     }

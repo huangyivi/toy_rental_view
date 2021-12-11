@@ -4,14 +4,13 @@ import {
   Row,
   Space,
   Modal,
-  DatePicker,
   Select,
   Input,
   Button,
   Table
 } from 'antd'
 import React, { Component } from 'react'
-import { PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons'
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { BossApi } from '../../utils/api'
 const { Search } = Input
 const { Option } = Select
@@ -169,10 +168,8 @@ export default class Assistant extends Component {
     const {
       dataSource,
       isAddModalVisible,
-      s_id,
       s_name,
       s_username,
-      s_password,
       search_val,
       search_condition
     } = this.state

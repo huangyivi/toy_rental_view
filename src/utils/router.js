@@ -3,12 +3,12 @@
  * @Author: yivi
  * @Date: 2021-12-06 21:03:12
  * @LastEditors: yivi
- * @LastEditTime: 2021-12-08 15:42:11
+ * @LastEditTime: 2021-12-11 14:32:15
  */
 import Toy from "../view/Toy"
 import Member from "../view/Member"
 import Rental from "../view/Rental"
-export default [
+const route = [
     {
         key: "toy",
         name: "玩具管理",
@@ -31,3 +31,4 @@ export default [
         exact: true
     }
 ]
+export default route

@@ -5,7 +5,6 @@ import {
   Space,
   Modal,
   Select,
-  Input,
   Button,
   Table,
   Tag
@@ -14,7 +13,6 @@ import React, { Component } from 'react'
 import { PlusOutlined, DeleteOutlined, CheckOutlined } from '@ant-design/icons'
 import { RentalApi, ToyApi, MemberApi } from '../../utils/api'
 import { getDate } from '../../utils/utils'
-const { Search } = Input
 const { Option } = Select
 
 export default class Rental extends Component {
@@ -25,8 +23,6 @@ export default class Rental extends Component {
     this.closeAdd = this.closeAdd.bind(this)
     this.openAdd = this.openAdd.bind(this)
     this.add = this.add.bind(this)
-    this.onSearch = this.onSearch.bind(this)
-    this.onConditionChange = this.onConditionChange.bind(this)
     this.onMemberChange = this.onMemberChange.bind(this)
     this.onToyChange = this.onToyChange.bind(this)
     this.returnRent = this.returnRent.bind(this)
@@ -47,44 +43,10 @@ export default class Rental extends Component {
     s_rent_name: '',
     s_return_id: '',
     s_return_name: '',
-    search_condition: 'm_name',
-    search_val: '',
-    selected_member: '',
     selected_toy: '',
     user: JSON.parse(sessionStorage.getItem('user'))
   }
 
-
-  // 搜索
-  onSearch () {
-    if (this.state.search_val === '') {
-      this.getAll()
-      return
-    }
-    let data = new URLSearchParams()
-    data.append('condition', this.state.search_condition)
-    data.append('value', this.state.search_val)
-    RentalApi.search(data).then(res => {
-      let data = res.data
-      if (data.success) {
-        let temp = data.data
-        for (let item of temp) {
-          item.key = item.t_id
-        }
-        this.setState({
-          dataSource: temp
-        })
-        message.success(data.message)
-      } else {
-        message.error(data.message)
-      }
-    })
-  }
-  onConditionChange (val) {
-    this.setState({
-      search_condition: val
-    })
-  }
   onMemberChange (val) {
     this.setState({
       selected_member: val
@@ -111,7 +73,7 @@ export default class Rental extends Component {
   }
   add () {
     let { selected_member, selected_toy,user } = this.state
-    if (selected_member == '' || selected_toy == '') {
+    if (selected_member === '' || selected_toy === '') {
       message.warning('请选择响应数据！')
       return
     }
@@ -258,11 +220,8 @@ export default class Rental extends Component {
   }
   render () {
     const {
-      selectedRowKeys,
       dataSource,
       isAddModalVisible,
-      search_val,
-      search_condition,
       selected_member,
       selected_toy,
       allMembers,
@@ -310,12 +269,15 @@ export default class Rental extends Component {
                   type='primary'
                   onClick={this.returnRent.bind(this, record.r_id)}
                   icon={<CheckOutlined />}
+                  key={record.r_id}
                 />
                 <Button
                   type='primary'
                   danger
                   onClick={this.del.bind(this, record.r_id)}
                   icon={<DeleteOutlined />}
+                  key={record.r_id}
+
                 />
               </>
             )}
@@ -324,33 +286,10 @@ export default class Rental extends Component {
       }
     ]
 
-
-
-    const searchCondiction = (
-      <Select defaultValue={search_condition} onChange={this.onConditionChange}>
-        <Option value='m_name'>租赁人</Option>
-        <Option value='t_name'>玩具</Option>
-        <Option value='r_rent_date'>租赁日期</Option>
-        <Option value='r_return_date'>归还日期</Option>
-        <Option value='s_rent_name'>租赁处理人</Option>
-        <Option value='s_return_name'>归还处理人</Option>
-      </Select>
-    )
     return (
       <div className='all-container'>
         <Row style={{ padding: '1rem 0' }}>
-          <Col span={2}></Col>
-          <Col span={6}>
-            <Search
-              addonBefore={searchCondiction}
-              placeholder='请输入条件'
-              allowClear
-              onSearch={this.onSearch}
-              value={search_val}
-              onChange={this.onText}
-              data-key='search_val'
-            />
-          </Col>
+          <Col span={1}></Col>
           <Col className='grid-center' span={4}>
             <Button
               type='primary'

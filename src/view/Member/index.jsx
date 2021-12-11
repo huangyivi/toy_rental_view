@@ -242,7 +242,7 @@ export default class Member extends Component {
     }
   }
   delByIds () {
-    if (this.state.selectedRowKeys.length == 0) {
+    if (this.state.selectedRowKeys.length === 0) {
       message.warning('请选择要删除的数据！')
       return
     }
@@ -290,7 +290,6 @@ export default class Member extends Component {
       dataSource,
       isEditModalVisible,
       isAddModalVisible,
-      m_id,
       m_name,
       m_addr,
       m_phone,

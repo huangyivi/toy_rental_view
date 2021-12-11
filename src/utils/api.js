@@ -3,7 +3,7 @@
  * @Author: yivi
  * @Date: 2021-12-07 14:46:24
  * @LastEditors: yivi
- * @LastEditTime: 2021-12-08 16:44:34
+ * @LastEditTime: 2021-12-11 14:29:31
  */
 import axios from "axios"
 
@@ -83,9 +83,6 @@ export const RentalApi = {
     },
     add(data) {
         return Request.post('/rental/add',data);
-    },
-    search(data) {
-        return Request.post('/rental/search',data);
     },
     return(data) {
         return Request.post('/rental/return',data)
